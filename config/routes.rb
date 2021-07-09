@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :authors
+  resources :newarticles
   root 'pages#home'
 	get 'about', to:'pages#about'
   resources :articles
