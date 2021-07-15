@@ -3,8 +3,21 @@ class ArticlesController < ApplicationController
 
   # GET /articles or /articles.json
   def index
+    #binding.pry
     @articles = Article.all
+    @data = Article.group(:category).count
+ 
+    respond_to do |format|
+      format.html
+      format.json { render json: ArticleDatatable.new(params) }
+    end
+
   end
+
+  def chart
+    @data = Article.group(:category).count 
+    render json: @data
+  end 
 
   # GET /articles/1 or /articles/1.json
   def show
